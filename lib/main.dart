@@ -1,4 +1,4 @@
-import 'package:car_app/features/welcome/sing_in.dart';
+import 'package:car_app/features/auth/screens/sing_in.dart';
 import 'package:car_app/features/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 

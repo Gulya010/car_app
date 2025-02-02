@@ -1,4 +1,5 @@
-import 'package:car_app/features/welcome/sing_in.dart';
+import 'package:car_app/core/theme/app_colors.dart';
+import 'package:car_app/features/auth/screens/sing_in.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -18,21 +19,23 @@ class WelcomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 270,
               ),
-              const Text(
+              Text(
                 'Rent your dream car from the\nBest Company',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: 'Hind', color: Colors.white, fontSize: 20),
+                    fontFamily: 'Hind',
+                    color: AppColors.textColor81,
+                    fontSize: 20),
               ),
               const SizedBox(
                 height: 50,
               ),
-              TextButton(
-                style: TextButton.styleFrom(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 45, vertical: 20),
+                      const EdgeInsets.symmetric(horizontal: 65, vertical: 14),
                   backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
+                  foregroundColor: AppColors.textColor,
                 ),
                 onPressed: () {
                   Navigator.push(context,

@@ -6,20 +6,22 @@ mixin AppNotice {
     Fluttertoast.showToast(
         msg: errorText,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red,
+        // ignore: deprecated_member_use
+        backgroundColor: Colors.red.withOpacity(0.8),
         textColor: Colors.white,
         fontSize: 16.0);
   }
 
-  void showSuccess(String successText) {
+  void showSuccess(String message) {
     Fluttertoast.showToast(
-        msg: successText,
+        msg: message,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red,
+        // ignore: deprecated_member_use
+        backgroundColor: Colors.green.withOpacity(0.8),
         textColor: Colors.white,
         fontSize: 16.0);
   }

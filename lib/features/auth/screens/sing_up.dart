@@ -1,5 +1,7 @@
-import 'package:car_app/core/extensions/services/shared_prefs.dart';
-import 'package:car_app/core/extensions/textstyle_extension.dart';
+import 'package:car_app/core/extensions/context_ext.dart';
+import 'package:car_app/core/extensions/int_ext.dart';
+import 'package:car_app/core/services/shared_prefs.dart';
+import 'package:car_app/core/extensions/textstyle_ext.dart';
 import 'package:car_app/core/resource/app_assets.dart';
 import 'package:car_app/core/theme/app_textstyles.dart';
 import 'package:car_app/features/auth/sing_btn.dart';
@@ -37,7 +39,7 @@ class _SingInState extends State<SingUp> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -46,38 +48,37 @@ class _SingInState extends State<SingUp> {
                   'Sign Up',
                   style: AppTextstyles.medium.setSize(48),
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
+                40.verticalSpace,
                 const AuthTextField(
-                    title: 'FULL NAME', hintText: 'Lorem Ipsum'),
-                const SizedBox(
-                  height: 15,
+                  title: 'FULL NAME',
+                  hintText: 'Lorem Ipsum',
+                  controller: null,
                 ),
+                15.verticalSpace,
                 const AuthTextField(
-                    title: 'EMAIL OR PHONE', hintText: 'Loremipsum@gmail.com'),
-                const SizedBox(
-                  height: 15,
+                  title: 'EMAIL OR PHONE',
+                  hintText: 'Loremipsum@gmail.com',
+                  controller: null,
                 ),
-                const AuthTextField(title: 'PASSWORD', hintText: '***********'),
-                const SizedBox(
-                  height: 65,
+                15.verticalSpace,
+                const AuthTextField(
+                  title: 'PASSWORD',
+                  hintText: '***********',
+                  controller: null,
                 ),
-                SingBtn(
-                  text: 'Login',
+                60.verticalSpace,
+                InkWell(
                   onTap: () {
                     _prefs.save(
                         key: StorageKey.login, value: _loginController.text);
                     _prefs.save(
                         key: StorageKey.password,
                         value: _passwordController.text);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SingIn(),
-                      ),
-                    );
+                    context.push(const SingIn());
                   },
+                  child: const SingBtn(
+                    text: 'Login',
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8),
@@ -88,22 +89,22 @@ class _SingInState extends State<SingUp> {
                     ),
                   ),
                 ),
-                AuthBtn(
-                  btnText: 'Continue With Google',
+                InkWell(
                   onTap: () {},
-                  image: AppAssets.chrome,
+                  child: const AuthBtn(
+                    btnText: 'Continue With Google',
+                    image: AppAssets.chrome,
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                AuthBtn(
-                  btnText: 'Continue With Facebook',
+                20.verticalSpace,
+                InkWell(
                   onTap: () {},
-                  image: AppAssets.facebook,
+                  child: const AuthBtn(
+                    btnText: 'Continue With Facebook',
+                    image: AppAssets.facebook,
+                  ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+                25.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -112,7 +113,9 @@ class _SingInState extends State<SingUp> {
                       style: TextStyle(fontSize: 16),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(const SingIn());
+                      },
                       child: const Text(
                         'SIGN IN',
                         style: TextStyle(

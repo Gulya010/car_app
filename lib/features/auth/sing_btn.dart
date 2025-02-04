@@ -1,18 +1,18 @@
+import 'package:car_app/core/extensions/int_ext.dart';
 import 'package:flutter/material.dart';
 
 class SingBtn extends StatelessWidget {
-  const SingBtn({super.key, required this.text, required this.onTap});
+  const SingBtn({super.key, required this.text});
 
   final String text;
-  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 26),
+      padding: 26.symmetricHorizontal,
       decoration: BoxDecoration(
         color: const Color(0xff2B4C59),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: 10.borderRadius,
       ),
       child: ListTile(
         title: Center(

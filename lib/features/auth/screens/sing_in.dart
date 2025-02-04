@@ -1,10 +1,16 @@
-import 'package:car_app/core/extensions/services/shared_prefs.dart';
-import 'package:car_app/core/extensions/textstyle_extension.dart';
+import 'package:car_app/core/extensions/context_ext.dart';
+import 'package:car_app/core/extensions/int_ext.dart';
+import 'package:car_app/core/extensions/list_ext.dart';
+import 'package:car_app/core/services/shared_prefs.dart';
+import 'package:car_app/core/extensions/textstyle_ext.dart';
+import 'package:car_app/core/mixins/app_notice.dart';
 import 'package:car_app/core/resource/app_assets.dart';
 import 'package:car_app/core/theme/app_textstyles.dart';
+import 'package:car_app/features/auth/screens/sing_up.dart';
 import 'package:car_app/features/auth/sing_btn.dart';
 import 'package:car_app/features/auth/auth_text_field.dart';
 import 'package:car_app/features/auth/auth_btn.dart';
+import 'package:car_app/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SingIn extends StatefulWidget {
@@ -14,7 +20,7 @@ class SingIn extends StatefulWidget {
   State<SingIn> createState() => _SingInState();
 }
 
-class _SingInState extends State<SingIn> {
+class _SingInState extends State<SingIn> with AppNotice {
   final _nameController = TextEditingController();
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -36,7 +42,7 @@ class _SingInState extends State<SingIn> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+            padding: [100, 40].symmetricPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -45,42 +51,40 @@ class _SingInState extends State<SingIn> {
                   'Sign In',
                   style: AppTextstyles.medium.setSize(48),
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
+                40.verticalSpace,
                 const AuthTextField(
-                    title: 'EMAIL OR PHONE', hintText: 'Loremipsum@gmail.com'),
-                const SizedBox(
-                  height: 15,
+                  title: 'EMAIL OR PHONE',
+                  hintText: 'Loremipsum@gmail.com',
+                  controller: null,
                 ),
-                const AuthTextField(title: 'PASSWORD', hintText: '***********'),
-                const SizedBox(
-                  height: 15,
+                15.verticalSpace,
+                const AuthTextField(
+                  title: 'PASSWORD',
+                  hintText: '***********',
+                  controller: null,
                 ),
+                15.verticalSpace,
                 const Text(
                   'Forgot password?',
                   style: TextStyle(fontSize: 14),
                 ),
-                const SizedBox(
-                  height: 65,
-                ),
-                SingBtn(
-                  text: 'Login',
+                65.verticalSpace,
+                InkWell(
                   onTap: () async {
                     final login = await _prefs.read(key: StorageKey.login);
                     final password =
                         await _prefs.read(key: StorageKey.password);
                     if (login == _loginController.text &&
                         password == _passwordController.text) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => Text('success'));
+                      showSuccess('Успешный вход');
+                      context.push(const HomeScreen());
                     } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) => const Text('error'));
+                      showError('Ошибка при авторизации');
                     }
                   },
+                  child: const SingBtn(
+                    text: 'Login',
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8),
@@ -91,22 +95,22 @@ class _SingInState extends State<SingIn> {
                     ),
                   ),
                 ),
-                AuthBtn(
-                  btnText: 'Continue With Google',
+                InkWell(
                   onTap: () {},
-                  image: AppAssets.chrome,
+                  child: const AuthBtn(
+                    btnText: 'Continue With Google',
+                    image: AppAssets.chrome,
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                AuthBtn(
-                  btnText: 'Continue With Facebook',
+                20.verticalSpace,
+                InkWell(
                   onTap: () {},
-                  image: AppAssets.facebook,
+                  child: const AuthBtn(
+                    btnText: 'Continue With Facebook',
+                    image: AppAssets.facebook,
+                  ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+                25.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -115,7 +119,9 @@ class _SingInState extends State<SingIn> {
                       style: TextStyle(fontSize: 16),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(const SingUp());
+                      },
                       child: const Text(
                         'SIGN UP',
                         style: TextStyle(

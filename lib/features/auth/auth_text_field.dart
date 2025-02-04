@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AuthTextField extends StatelessWidget {
-  const AuthTextField({super.key, required this.hintText, required this.title});
+  const AuthTextField(
+      {super.key,
+      required this.hintText,
+      required this.title,
+      required this.controller});
 
   final String title;
   final String hintText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,10 @@ class AuthTextField extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
         ),
         TextFormField(
+          controller: controller,
           decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: const TextStyle(color: Colors.grey, fontSize: 14)),
+              hintStyle: const TextStyle(color: Colors.grey, fontSize: 18)),
         ),
       ],
     );

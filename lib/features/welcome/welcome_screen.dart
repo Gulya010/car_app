@@ -1,3 +1,6 @@
+import 'package:car_app/core/extensions/context_ext.dart';
+import 'package:car_app/core/extensions/int_ext.dart';
+import 'package:car_app/core/extensions/list_ext.dart';
 import 'package:car_app/core/theme/app_colors.dart';
 import 'package:car_app/features/auth/screens/sing_in.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +18,8 @@ class WelcomeScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Image.asset(height: 30, width: 100, 'welcome_logo.png'),
-              const SizedBox(
-                height: 270,
-              ),
+              Image.asset(height: 50, width: 120, 'welcome_logo.png'),
+              300.verticalSpace,
               Text(
                 'Rent your dream car from the\nBest Company',
                 textAlign: TextAlign.center,
@@ -27,19 +28,15 @@ class WelcomeScreen extends StatelessWidget {
                     color: AppColors.textColor81,
                     fontSize: 20),
               ),
-              const SizedBox(
-                height: 50,
-              ),
+              80.verticalSpace,
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 65, vertical: 14),
+                  padding: [20, 66].symmetricPadding,
                   backgroundColor: Colors.red,
                   foregroundColor: AppColors.textColor,
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SingIn()));
+                  context.push(const SingIn());
                 },
                 child: const Text(
                   'Get Started >',
@@ -50,9 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 50,
-              ),
+              60.verticalSpace,
             ],
           )
         ],

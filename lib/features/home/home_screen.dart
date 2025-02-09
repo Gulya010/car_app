@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_app/core/enum/car_filters.dart';
+import 'package:car_app/core/extensions/context_ext.dart';
 import 'package:car_app/core/extensions/int_ext.dart';
 import 'package:car_app/core/resource/app_svg.dart';
+import 'package:car_app/features/detail/detail_screen.dart';
 import 'package:car_app/features/home/provider/cars_provider.dart';
 import 'package:car_app/features/home/widgets/add_widget.dart';
 import 'package:car_app/features/home/widgets/car_chip_widget.dart';
@@ -95,38 +97,46 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: providerW.currentList[index].type.getColor
-                                  .withOpacity(0.4),
-                              borderRadius: 10.borderRadius,
-                            ),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: CachedNetworkImage(
-                                    placeholder: (context, url) =>
-                                        const SizedBox.shrink(),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                    imageUrl:
-                                        providerW.currentList[index].image,
+                          return GestureDetector(
+                            onTap: () {
+                              context.push(DetailScreen(
+                                car: providerW.currentList[index],
+                              ));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: providerW
+                                    .currentList[index].type.getColor
+                                    .withOpacity(0.4),
+                                borderRadius: 10.borderRadius,
+                              ),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: CachedNetworkImage(
+                                      placeholder: (context, url) =>
+                                          const SizedBox.shrink(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      imageUrl:
+                                          providerW.currentList[index].image,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                    '${providerW.currentList[index].brand} ${providerW.currentList[index].model}'),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                        '${providerW.currentList[index].price}\$'),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                            Icons.add_shopping_cart)),
-                                  ],
-                                )
-                              ],
+                                  Text(
+                                      '${providerW.currentList[index].brand} ${providerW.currentList[index].model}'),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                          '${providerW.currentList[index].price}\$'),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                              Icons.add_shopping_cart)),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           );
                         },

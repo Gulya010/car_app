@@ -8,7 +8,7 @@ final list = <CarModel>[
     model: 'Camry',
     price: 300,
     image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs5ejClhKWT_ZYdrU1r6JgzJDBr8PVCv6ruQ&s',
+        'https://www.hybrid-liberec.cz/User_Files/photos/5cf77e78a842dcamry.png',
   ),
   CarModel(
     type: CarFilters.familyCars,
@@ -16,7 +16,7 @@ final list = <CarModel>[
     model: 'Forester',
     price: 150,
     image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdMbK-xCWRjUtEh_alS1MxJFMgfophhXjaow&s',
+        'https://w7.pngwing.com/pngs/210/832/png-transparent-2004-subaru-forester-2002-subaru-forester-2006-subaru-forester-2005-subaru-forester-subaru-car-vehicle-auto-part.png',
   ),
   CarModel(
       type: CarFilters.luxuryCars,
@@ -162,7 +162,8 @@ final list = <CarModel>[
       brand: 'Honda',
       model: 'Civic',
       price: 50,
-      image: 'https://banner2.cleanpng.com/20180206/cow/av27ivqxm.webp'),
+      image:
+          'https://e7.pngegg.com/pngimages/64/833/png-clipart-2018-honda-fit-car-2018-honda-civic-lx-2018-honda-civic-sedan-honda-compact-car-sedan.png'),
   CarModel(
       type: CarFilters.popularCars,
       brand: 'Lexus',

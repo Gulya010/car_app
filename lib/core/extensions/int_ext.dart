@@ -17,4 +17,8 @@ extension IntExt on int {
   EdgeInsets get onlyTop => EdgeInsets.only(top: toDouble());
   EdgeInsets get onlyBottom => EdgeInsets.only(bottom: toDouble());
   BorderRadius get borderRadius => BorderRadius.circular(toDouble());
+  BorderRadius get borLeftRadius =>
+      BorderRadius.only(bottomLeft: Radius.circular(toDouble()));
+  BorderRadius get borRightRadius =>
+      BorderRadius.only(bottomRight: Radius.circular(toDouble()));
 }

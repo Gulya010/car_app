@@ -16,8 +16,8 @@ class CarApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => CarsProvider(),
       child: const MaterialApp(
-        home: HomeScreen(),
-        //WelcomeScreen(),
+        home: //HomeScreen(),
+            WelcomeScreen(),
       ),
     );
   }
